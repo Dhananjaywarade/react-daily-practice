@@ -10,7 +10,7 @@ function App() {
       }
       
       <button onClick={()=>{setStatus(true)}}>show</button>
-      <button>hide</button>
+      <button onClick={()=>{setStatus(false)}}>hide</button>
     </div>
   );
 }
