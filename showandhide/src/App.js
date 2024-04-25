@@ -11,6 +11,7 @@ function App() {
       
       <button onClick={()=>{setStatus(true)}}>show</button>
       <button onClick={()=>{setStatus(false)}}>hide</button>
+      <button onClick={()=>{setStatus(!status)}}>Toggle</button>
     </div>
   );
 }
