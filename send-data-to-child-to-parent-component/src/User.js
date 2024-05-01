@@ -1,8 +1,12 @@
 import React from 'react'
 
-const User = () => {
+const User = (props) => {
+    const data="dhananjay warade";
   return (
-    <div>Child component</div>
+    <div> 
+        <h2>UserName : {props.name}</h2>
+        <button onClick={()=>{alert(data)}}>Click Me</button>
+    </div>
   )
 }
 
