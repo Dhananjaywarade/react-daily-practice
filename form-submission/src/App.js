@@ -43,7 +43,22 @@ function App() {
     toast("🔄 Form Reset Successful")
   }
 
-
+  const handleSubmit=(e)=>{
+    e.preventDefault();
+    console.log(
+      firstName,
+      lastName,
+      email,
+      contact,
+      gender,
+      selectedOption,
+      subjects,
+      resume,
+      url,
+      about
+  );
+  toast.success("Submission Received!")
+  }
 
   return (
     <div className="App">
@@ -123,6 +138,7 @@ function App() {
         <button
           type="submit"
           value="Submit"
+          onClick={handleSubmit}
         >
           Submit
         </button>
