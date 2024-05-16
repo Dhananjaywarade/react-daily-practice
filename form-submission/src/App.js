@@ -1,5 +1,6 @@
 import './App.css';
 import { useState } from "react";
+import { toast } from 'react-toastify';
 function App() {
   const [firstName, setFirstName] = useState();
   const [lastName, setLastName] = useState();
@@ -45,7 +46,7 @@ function App() {
         <input type="checkbox" name="lang" id="" value="physics" checked={subjects.physics===true} onChange={(e)=>{handleSubjectChange('physics')}}/>Physics
 
         <label htmlFor="resume">Upload Resume*</label>
-        <input type="file" name="resume" id="" onChange={(e)=>{setResume(e.target.value);console.log("file upload successfully");}}/>
+        <input type="file" name="resume" id="" onChange={(e)=>{setResume(e.target.value);toast.success("Resume Uploaded 📄");}}/>
 
         <label htmlFor="url">Enter URL*</label>
         <input type="url" name="url" id="" />
