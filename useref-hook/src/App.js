@@ -5,6 +5,8 @@ function App() {
   const handleInput=()=>{
     inputRef.current.value="5000";
     inputRef.current.focus();
+    inputRef.current.style.color="red";
+    inputRef.current.style.display="none";
   }
   return (
     <div className="App">
