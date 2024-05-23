@@ -4,13 +4,20 @@ import './App.css';
 
 function App() {
   const [data, setData] = useState([]);
+
   useEffect(() => {
     axios.get("https://fakestoreapi.com/products").then((data)=>{setData(data.data)})
-  }, [])
-  
+  }, []);
+
+ 
+
+
   return (
     
     <div className="App">
+
+
+      {/* get data */}
       <table>
         <tr>
           <td>id</td>
