@@ -7,29 +7,36 @@ function App() {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [address, setAddress] = useState("");
+  
 
   const saveStudent = (e) => {
     e.preventDefault();
-    axios.post("http://localhost:8080/addStudent", { firstName: firstName, lastName: lastName, address: address }).then(() => { getList();setFirstName('');setLastName('');setAddress('');});
-    
+    axios.post("http://localhost:8080/addStudent", { firstName: firstName, lastName: lastName, address: address }).then(() => { getList(); setFirstName(''); setLastName(''); setAddress(''); });
+
   }
-  const handleDelete=(id)=>{
-   
-   axios.delete(`http://localhost:8080/deleteStudent/${id}`).then(()=>{getList()});
-   
+  const handleDelete = (id) => {
+
+    axios.delete(`http://localhost:8080/deleteStudent/${id}`).then(() => { getList() });
+
   }
 
-  const getList=()=>{
-    axios.get("http://localhost:8080/getAllStudent").then((data) => { setData(data.data) })
+  const getList = () => {
+    axios.get("http://localhost:8080/getAllStudent").then((data) => { setData(data.data); })
   }
 
+
+
+ 
+
+
+  
   useEffect(() => {
     getList();
   }, [])
 
   return (
     <div className="App container">
-    
+
       {/* Get All Students */}
       <h1 className="my-4">Get All Students</h1>
       <table className="table table-striped table-bordered">
@@ -43,16 +50,15 @@ function App() {
           </tr>
         </thead>
         <tbody>
-          {data.map((item, key) => {
-            return <tr key={key}>
+          {data.map((item, key) =>
+            <tr key={key}>
               <td>{item.id}</td>
               <td>{item.firstName}</td>
               <td>{item.lastName}</td>
               <td>{item.address}</td>
-              <td style={{color:"red"}}><button onClick={()=>{handleDelete(item.id)}}>🗑️</button> </td>
-            
+              <td ><button className='btn btn-danger' onClick={() => { handleDelete(item.id) }}>Delete</button> </td>
             </tr>
-          })}
+          )}
         </tbody>
       </table>
       {/* Add student  */}
@@ -100,7 +106,8 @@ function App() {
 
         </div>
       </div>
-      
+
+    
     </div>
   );
 }
