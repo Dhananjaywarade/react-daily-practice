@@ -10,13 +10,21 @@ function App() {
 
   const saveStudent = (e) => {
     e.preventDefault();
-    axios.post("http://localhost:8080/addStudent", { firstName: firstName, lastName: lastName, address: address }).then((data) => { console.log(data.data); });
+    axios.post("http://localhost:8080/addStudent", { firstName: firstName, lastName: lastName, address: address }).then(() => { getList();setFirstName('');setLastName('');setAddress('');});
     
   }
-  
+  const handleDelete=(id)=>{
+   
+   axios.delete(`http://localhost:8080/deleteStudent/${id}`).then(()=>{getList()});
+   
+  }
+
+  const getList=()=>{
+    axios.get("http://localhost:8080/getAllStudent").then((data) => { setData(data.data) })
+  }
 
   useEffect(() => {
-    axios.get("http://localhost:8080/getAllStudent").then((data) => { setData(data.data) })
+    getList();
   }, [])
 
   return (
@@ -31,6 +39,7 @@ function App() {
             <th>First Name</th>
             <th>Last Name</th>
             <th>Address</th>
+            <th>Delete</th>
           </tr>
         </thead>
         <tbody>
@@ -40,6 +49,8 @@ function App() {
               <td>{item.firstName}</td>
               <td>{item.lastName}</td>
               <td>{item.address}</td>
+              <td style={{color:"red"}}><button onClick={()=>{handleDelete(item.id)}}>🗑️</button> </td>
+            
             </tr>
           })}
         </tbody>
